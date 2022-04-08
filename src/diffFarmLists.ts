@@ -1,8 +1,6 @@
 import { FarmInfo } from './types';
 
-export type FarmInfoChangeKey = Exclude<
-  keyof FarmInfo, 'id' | 'pair'
->;
+export type FarmInfoChangeKey = Exclude<keyof FarmInfo, 'id' | 'pair'>;
 export type FarmInfoChanges = Array<FarmInfoChangeKey>;
 
 /**
