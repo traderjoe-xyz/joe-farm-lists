@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "sadfkjlasjfldaskjfla",
+  "$id": "https://raw.githubusercontent.com/traderjoe-xyz/joe-farm-lists/main/src/farmlist.schema.json",
   "title": "Trader Joe Farm List",
   "description": "Schema for lists of farms compatible with the Trader Joe Interface",
   "definitions": {
