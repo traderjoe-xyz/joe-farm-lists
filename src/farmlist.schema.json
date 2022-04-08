@@ -1,0 +1,187 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sadfkjlasjfldaskjfla",
+  "title": "Trader Joe Farm List",
+  "description": "Schema for lists of farms compatible with the Trader Joe Interface",
+  "definitions": {
+    "Version": {
+      "type": "object",
+      "description": "The version of the list, used in change detection",
+      "examples": [
+        {
+          "major": 1,
+          "minor": 0,
+          "patch": 0
+        }
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "major": {
+          "type": "integer",
+          "description": "The major version of the list. Must be incremented when farms are removed from the list or farm pair addresses are changed.",
+          "minimum": 0,
+          "examples": [
+            1,
+            2
+          ]
+        },
+        "minor": {
+          "type": "integer",
+          "description": "The minor version of the list. Must be incremented when farms are added to the list.",
+          "minimum": 0,
+          "examples": [
+            0,
+            1
+          ]
+        },
+        "patch": {
+          "type": "integer",
+          "description": "The patch version of the list. Must be incremented for any changes to the list.",
+          "minimum": 0,
+          "examples": [
+            0,
+            1
+          ]
+        }
+      },
+      "required": [
+        "major",
+        "minor",
+        "patch"
+      ]
+    },
+    "ExtensionPrimitiveValue": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 42,
+          "examples": [
+            "#00000"
+          ]
+        },
+        {
+          "type": "boolean",
+          "examples": [
+            true
+          ]
+        },
+        {
+          "type": "number",
+          "examples": [
+            15
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "FarmInfo": {
+      "type": "object",
+      "description": "Metadata for a single farm in a farm list",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "The ID of the farm",
+          "minimum": 0,
+          "examples": [
+            1,
+            42
+          ]
+        },
+        "pair": {
+          "type": "string",
+          "description": "The checksummed address of the pair for the farm",
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "examples": [
+            "0xf4003F4efBE8691B60249E6afbD307aBE7758adb"
+          ]
+        },
+        "allocPoint": {
+          "type": "integer",
+          "description": "The number of allocation points for this farm",
+          "minimum": 0,
+          "examples": [
+            5000
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the farm",
+          "minLength": 1,
+          "maxLength": 40,
+          "examples": [
+            "AVAX-WETH.e"
+          ]
+        },
+        "masterchef": {
+          "type": "string",
+          "description": "Checksummed address of the masterChef that the farm is in",
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "examples": [
+            "0x4483f0b6e2F5486D06958C20f8C39A7aBe87bf8F"
+          ]
+        },
+        "token0": {
+          "type": "string",
+          "description": "Checksummed address of the first token that is part of the farm's pair",
+          "examples": [
+            "0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB"
+          ]
+        },
+        "token1": {
+          "type": "string",
+          "description": "Checksummed address of the second token that is part of the farm's pair",
+          "examples": [
+            "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "pair",
+        "allocPoint",
+        "masterChef",
+        "name"
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the farm list",
+      "minLength": 1,
+      "maxLength": 40,
+      "examples": [
+        "MasterchefV3 Farms"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp of this list version; i.e. when this immutable version of the list was created"
+    },
+    "version": {
+      "$ref": "#/definitions/Version"
+    },
+    "farms": {
+      "type": "array",
+      "description": "The list of farms included in the list",
+      "items": {
+        "$ref": "#/definitions/FarmInfo"
+      },
+      "minItems": 1,
+      "maxItems": 10000
+    }
+  },
+  "required": [
+    "name",
+    "timestamp",
+    "version",
+    "farms"
+  ]
+}

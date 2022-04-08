@@ -1,11 +1,7 @@
 {
-  "name": "@uniswap/token-lists",
-  "author": {
-    "name": "Uniswap Labs",
-    "email": "contact@uniswap.org",
-    "url": "https://uniswap.org"
-  },
-  "description": "📚 The Token Lists specification",
+  "name": "@traderjoe-xyz/joe-farm-lists",
+  "author": "intro0000",
+  "description": "📚 The Farm Lists specification",
   "version": "1.0.0-beta.28",
   "license": "MIT",
   "main": "dist/index.js",
@@ -18,13 +14,13 @@
     "node": ">=10"
   },
   "repository": {
-    "url": "https://github.com/Uniswap/token-lists",
+    "url": "https://github.com/traderjoe-xyz/joe-farm-lists",
     "type": "git"
   },
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "postbuild": "cp src/tokenlist.schema.json dist/tokenlist.schema.json",
+    "postbuild": "cp src/farmlist.schema.json dist/farmlist.schema.json",
     "test": "tsdx test",
     "lint": "tsdx lint src test",
     "prepublishOnly": "yarn test && yarn build"
@@ -41,7 +37,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "module": "dist/token-lists.esm.js",
+  "module": "dist/joe-farm-lists.esm.js",
   "devDependencies": {
     "ajv": "^8.6.1",
     "ajv-formats": "^2.1.0",

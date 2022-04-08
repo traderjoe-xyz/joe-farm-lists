@@ -1,16 +1,11 @@
-type ExtensionValue = string | number | boolean | null;
-
-export interface TokenInfo {
-  readonly chainId: number;
-  readonly address: string;
+export interface FarmInfo {
+  readonly id: number;
+  readonly pair: string;
   readonly name: string;
-  readonly decimals: number;
-  readonly symbol: string;
-  readonly logoURI?: string;
-  readonly tags?: string[];
-  readonly extensions?: {
-    readonly [key: string]: { [key: string]: ExtensionValue } | ExtensionValue;
-  };
+  readonly allocPoint: number;
+  readonly masterChef: string;
+  readonly token0?: string;
+  readonly token1?: string;
 }
 
 export interface Version {
@@ -19,19 +14,9 @@ export interface Version {
   readonly patch: number;
 }
 
-export interface Tags {
-  readonly [tagId: string]: {
-    readonly name: string;
-    readonly description: string;
-  };
-}
-
-export interface TokenList {
+export interface FarmList {
   readonly name: string;
   readonly timestamp: string;
   readonly version: Version;
-  readonly tokens: TokenInfo[];
-  readonly keywords?: string[];
-  readonly tags?: Tags;
-  readonly logoURI?: string;
+  readonly farms: FarmInfo[];
 }
