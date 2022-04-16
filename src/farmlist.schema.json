@@ -124,6 +124,14 @@
             "0x4483f0b6e2F5486D06958C20f8C39A7aBe87bf8F"
           ]
         },
+        "rewarder": {
+          "type": "string",
+          "description": "Checksummed address of the rewarder for the farm",
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "examples": [
+            "0x851c63E0F698035C056f58Ed9BeDcc68a32F10F3"
+          ]
+        },
         "token0": {
           "type": "string",
           "description": "Checksummed address of the first token that is part of the farm's pair",
@@ -136,6 +144,13 @@
           "description": "Checksummed address of the second token that is part of the farm's pair",
           "examples": [
             "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7"
+          ]
+        },
+        "v3": {
+          "type": "boolean",
+          "description": "Whether or not masterchef is v3",
+          "examples": [
+            true
           ]
         }
       },
