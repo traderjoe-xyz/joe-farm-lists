@@ -1,52 +1,43 @@
-import { minVersionBump, TokenInfo, VersionUpgrade } from '../src';
-const tokenA: TokenInfo = {
-  chainId: 1,
-  address: '0x0a',
-  logoURI: 'ipfs://test',
-  symbol: 'abcd',
-  name: 'token a',
-  decimals: 18,
-  tags: ['hello', 'world'],
+import { minVersionBump, FarmInfo, VersionUpgrade } from '../src';
+const farmA: FarmInfo = {
+  id: 1,
+  pair: '0xf4003F4efBE8691B60249E6afbD307aBE7758adb',
+  allocPoint: 5000,
+  masterChef: '0x4483f0b6e2F5486D06958C20f8C39A7aBe87bf8F',
+  name: 'AVAX-USDC',
 };
-const tokenAChangedNameDecimals: TokenInfo = {
-  ...tokenA,
+const farmAChangedNameAllocPoint: FarmInfo = {
+  ...farmA,
   name: 'blah',
-  decimals: 12,
+  allocPoint: 0,
 };
-const tokenAChangedTags: TokenInfo = {
-  ...tokenA,
-  tags: ['hello', 'worlds'],
+
+const farmB: FarmInfo = {
+  id: 2,
+  pair: '0xb2303G4efCE8691B60249E6afbD307aBE7758adb',
+  allocPoint: 5000,
+  masterChef: '0x4483f0b6e2F5486D06958C20f8C39A7aBe87bf8F',
+  name: 'AVAX-USDC',
+  token0: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
+  token1: '0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E',
 };
-const tokenB: TokenInfo = {
-  chainId: 1,
-  address: '0x0b',
-  logoURI: 'ipfs://blah',
-  symbol: 'defg',
-  name: 'token b',
-  decimals: 9,
-  tags: ['token', 'other'],
-};
+
 describe('#minVersionBump', () => {
   it('empty', () => {
     expect(minVersionBump([], [])).toBe(VersionUpgrade.NONE);
   });
-  it('patch for tag changes only', () => {
-    expect(minVersionBump([tokenA], [tokenAChangedTags])).toBe(
-      VersionUpgrade.PATCH
-    );
-  });
-  it('patch for name/decimals changes', () => {
-    expect(minVersionBump([tokenA], [tokenAChangedNameDecimals])).toBe(
+  it('patch for name/allocPoint changes', () => {
+    expect(minVersionBump([farmA], [farmAChangedNameAllocPoint])).toBe(
       VersionUpgrade.PATCH
     );
   });
   it('major for remove', () => {
-    expect(minVersionBump([tokenA], [])).toBe(VersionUpgrade.MAJOR);
+    expect(minVersionBump([farmA], [])).toBe(VersionUpgrade.MAJOR);
   });
   it('minor for add', () => {
-    expect(minVersionBump([], [tokenA])).toBe(VersionUpgrade.MINOR);
+    expect(minVersionBump([], [farmA])).toBe(VersionUpgrade.MINOR);
   });
   it('major for add/remove', () => {
-    expect(minVersionBump([tokenB], [tokenA])).toBe(VersionUpgrade.MAJOR);
+    expect(minVersionBump([farmB], [farmA])).toBe(VersionUpgrade.MAJOR);
   });
 });

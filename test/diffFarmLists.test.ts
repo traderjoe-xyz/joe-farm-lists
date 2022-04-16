@@ -40,7 +40,7 @@ describe('#diffFarmLists', () => {
       removed: [],
       changed: {
         1: {
-          1: ['allocPoint', 'name'],
+          '0xf4003F4efBE8691B60249E6afbD307aBE7758adb': ['allocPoint', 'name'],
         },
       },
     });
