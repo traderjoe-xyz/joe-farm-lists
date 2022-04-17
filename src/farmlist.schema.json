@@ -183,9 +183,18 @@
     "version": {
       "$ref": "#/definitions/Version"
     },
-    "farms": {
+    "avaxFarms": {
       "type": "array",
-      "description": "The list of farms included in the list",
+      "description": "The list of avax farms included in the list",
+      "items": {
+        "$ref": "#/definitions/FarmInfo"
+      },
+      "minItems": 1,
+      "maxItems": 10000
+    },
+    "rinkebyFarms": {
+      "type": "array",
+      "description": "The list of rinkeby farms included in the list",
       "items": {
         "$ref": "#/definitions/FarmInfo"
       },
